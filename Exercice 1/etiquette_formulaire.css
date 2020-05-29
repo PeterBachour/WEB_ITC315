@@ -1,0 +1,17 @@
+h1 {
+    font-size: 18pt;
+}
+
+label {
+    width: 100px;
+    text-align: right;
+    display: inline-block;
+    vertical-align: baseline
+}
+
+@media(max-width: 580px){
+    label {
+        width: auto;
+        display: flex;
+    } 
+}
