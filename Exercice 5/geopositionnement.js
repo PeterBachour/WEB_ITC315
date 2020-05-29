@@ -18,7 +18,12 @@ function geoSuccess(positionInfo) {
     document.getElementById("precisionAltitude").innerHTML = positionInfo.coords.altitudeAccuracy;
     document.getElementById("cap").innerHTML = positionInfo.coords.heading;
     document.getElementById("vitesse").innerHTML = positionInfo.coords.speed;
-    document.getElementById("distance").innerHTML = calculDistance(positionInfo.coords);
+
+    var ESIREM = { //Creation de l'objet ESIREM qui a les parametre latitude et longitude
+        latitude: 47.3121519,
+        longitude: 5.0039326
+      };    
+    document.getElementById("distance").innerHTML = calculDistance(positionInfo.coords, ESIREM) + "km";
 }
 
 //Affichage de l'erreur qui est apparu
@@ -31,11 +36,11 @@ function geoError(positionError) {
         alert("Délai de recherche de position trop long");
 }
 
-function calculDistance(startCoords) {
+function calculDistance(startCoords, destCoords) {
     var startLatRads = degreesEnRadians(startCoords.latitude); 
     var startLongRads = degreesEnRadians(startCoords.longitude);
-    var destLatRads = degreesEnRadians(47.3121519);//degreesEnRadians(destCoords.latitude);
-    var destLongRads = degreesEnRadians(5.0039326);// degreesEnRadians(destCoords.longitude);
+    var destLongRads = degreesEnRadians(destCoords.longitude);
+    var destLatRads = degreesEnRadians(destCoords.latitude);
     var Radius = 6371; // rayon de la Terre en km
     var distance = Math.acos(Math.sin(startLatRads) * Math.sin(destLatRads) +
         Math.cos(startLatRads) * Math.cos(destLatRads) *
