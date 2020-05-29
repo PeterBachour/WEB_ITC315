@@ -1,0 +1,11 @@
+.animtest, .noanimtest {
+    display: none;
+}
+
+.cssanimations .animtest {
+    display: block;
+}
+
+.no-cssanimations .noanimtest {
+    display: block;
+}
